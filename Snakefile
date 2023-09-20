@@ -16,3 +16,5 @@ wildcard_constraints:
 include: "workflow/rules/sra.smk"
 include: "workflow/rules/cutadapt.smk"
 include: "workflow/rules/fastqc.smk"
+include: "workflow/rules/star.smk"
+include: "workflow/rules/annotation.smk"
