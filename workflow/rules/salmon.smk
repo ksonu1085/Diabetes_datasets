@@ -20,6 +20,8 @@ rule salmon_pe:
         aln="data/salmon/{accession}/quant.sf",
     threads:
         16
+    conda:
+        "../envs/salmon.yaml"
     shell:
         "salmon quant --gcBias --seqBias --numGibbsSamples 25 -i {input} -l A -1 {input.fq1} -2 {input.fq2} -p {threads} --validateMappings -o data/salmon/{wildcards.accession}"
 
