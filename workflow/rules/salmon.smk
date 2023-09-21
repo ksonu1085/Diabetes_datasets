@@ -8,7 +8,7 @@ rule salmon_index:
     conda:
         "../envs/salmon.yaml"
     shell:
-        "salmon index --gencode -i {output} -t {input} -p {thread}"
+        "salmon index --gencode -i {output} -t {input} -p {threads}"
 
 
 rule salmon_pe:
@@ -24,7 +24,7 @@ rule salmon_pe:
         "salmon quant --gcBias --seqBias --numGibbsSamples 25 -i {input} -l A -1 {input.fq1} -2 {input.fq2} -p {threads} --validateMappings -o data/salmon/{wildcards.accession}"
 
 
-rule star_all:
+rule salmon_all:
     input:
         expand("data/salmon/{accession}/quant.sf", 
             accession=accessions)
