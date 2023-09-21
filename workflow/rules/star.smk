@@ -41,11 +41,26 @@ rule sort_by_coord:
         "data/star/{accession}/pe_aligned_sorted.bam"
     threads:
         8
+    conda:
+        "../envs/samtools.yaml"
     shell:
         "samtools sort -l 4 -@ {threads} -o {output} {input}"
 
 
+rule index_bam:
+    input:
+        "data/star/{accession}/pe_aligned_sorted.bam"
+    output:
+        "data/star/{accession}/pe_aligned_sorted.bam.bai"
+    threads:
+        4
+    conda:
+        "../envs/samtools.yaml"
+    shell:
+        "samtools index -b -@ {threads} -o {output} {input}"
+
+
 rule star_all:
     input:
-        expand("data/star/{accession}/pe_aligned_sorted.bam",
+        expand("data/star/{accession}/pe_aligned_sorted.bam.bai", 
             accession=accessions)
