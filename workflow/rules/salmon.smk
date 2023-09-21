@@ -23,7 +23,7 @@ rule salmon_pe:
     conda:
         "../envs/salmon.yaml"
     shell:
-        "salmon quant --gcBias --seqBias --numGibbsSamples 25 -i {input} -l A -1 {input.fq1} -2 {input.fq2} -p {threads} --validateMappings -o data/salmon/{wildcards.accession}"
+        "salmon quant --gcBias --seqBias --numGibbsSamples 25 -i {input.idx} -l A -1 {input.fq1} -2 {input.fq2} -p {threads} --validateMappings -o data/salmon/{wildcards.accession}"
 
 
 rule salmon_all:
